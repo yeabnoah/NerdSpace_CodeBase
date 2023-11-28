@@ -1,0 +1,21 @@
+POST http://localhost:5000/users/register
+
+Content-Type: application/json
+
+{
+    "name" : "yeabsra",
+    "phone_number" : "09937765761523",
+    "password" : "1234",
+    "username" : "Nerd"
+}
+
+# ###
+
+# POST http://localhost:5000/users/login
+
+# # Content-Type: application/json
+
+# # {
+# #   "username": "johndoe",
+# #   "password": "password123"
+# # }
