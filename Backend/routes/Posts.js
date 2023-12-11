@@ -9,6 +9,6 @@ router.get("/", (req, res) => {
   res.json({ message: "this is a posts api" });
 });
 
-router.post('')
+// router.post('')
 
 module.exports = router;
