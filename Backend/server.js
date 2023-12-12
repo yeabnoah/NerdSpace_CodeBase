@@ -9,7 +9,7 @@ const cors = require("cors");
 
 app.use("/users", userRouter);
 app.use(cors());
-app.use("/posts", postRouter);
+// app.use("/posts", postRouter);
 
 mongoose.connect(mongoPort).then(() => {
   app.listen(PORT, () => {

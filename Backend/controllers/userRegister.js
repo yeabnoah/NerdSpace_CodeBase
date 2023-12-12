@@ -21,13 +21,13 @@ const userRegister = (req, res) => {
             });
             newUser.save().then(() => {
               const token = generateToken(newUser._id);
-              res.json(token);
+              res.status(201).json(token);
 
               console.log("User added successfully");
             });
           } else {
             console.log("User already exists");
-            res.send("User already exists");
+            res.status(409).send("User already exists");
           }
         })
         .catch((error) => {
