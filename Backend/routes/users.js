@@ -17,6 +17,7 @@ const getLike = require("../controllers/getLike");
 const myFollowers = require("../controllers/myFollowers");
 const following = require("../controllers/following");
 const MockFetch = require("../controllers/MockFetch");
+const GetUser = require("../controllers/GetUser");
 router.use(express.json());
 
 router.post("/register", userRegister);
@@ -25,7 +26,7 @@ router.post("/login", userLogin);
 
 router.get("/auth/feed", authenticator, Feed);
 
-router.get("/mock", MockFetch);
+router.get("/auth/user/:id", authenticator, GetUser);
 
 router.post("/auth/create", authenticator, createPost);
 

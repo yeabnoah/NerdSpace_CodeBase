@@ -1,21 +1,8 @@
-POST http://localhost:5000/users/register
-
+POST http://localhost:5000/users/auth/like
 Content-Type: application/json
+Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTc4N2M5MTA0OTliZDM1Njc2NDEzOWUiLCJpYXQiOjE3MDI0MDE3MDIsImV4cCI6MTcwMjc2MTcwMn0.bMNN2t1NjhB6lMVifdB9h88eCORf3_MDXhTwDUHvjPc"
 
 {
-    "name" : "yeabsra",
-    "phone_number" : "09937765761523",
-    "password" : "1234",
-    "username" : "Nerd"
+    "postText" : "this is the first authenticated post ever on this channel",
+    "ImageUrl" : "https://thepathwayprogram.com/wp-content/uploads/teenagers-feet-dangling-624x468.jpg"
 }
-
-# ###
-
-# POST http://localhost:5000/users/login
-
-# # Content-Type: application/json
-
-# # {
-# #   "username": "johndoe",
-# #   "password": "password123"
-# # }

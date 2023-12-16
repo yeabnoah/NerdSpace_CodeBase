@@ -17,6 +17,8 @@ const getProfile = (req, res) => {
         avatarImage: userData.avatar_image,
         bio: userData.bio,
         joinedOn: userData.created_at,
+        followers: userData.followers.length,
+        following: userData.following.length,
       };
 
       res.json(profileData);
