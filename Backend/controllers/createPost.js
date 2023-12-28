@@ -1,7 +1,23 @@
 const Post = require("../model/postModel");
+const path = require("path");
+const formidable = require("formidable");
+const fs = require("fs");
 
-const createPost = (req, res) => {
-  const { postText, ImageUrl } = req.body;
+const createPost = async (req, res) => {
+  let ImageUrl;
+  let postText;
+
+  const form = new formidable.IncomingForm();
+  form.uploadDir = path.join(__dirname, "../uploads");
+
+  const [fields, files] = await form.parse(req);
+
+  const imageFile = files.imageFile;
+  if (imageFile) {
+    const myFile = imageFile[0];
+    ImageUrl = myFile.filepath;
+    postText = fields.content[0];
+  }
 
   if (!postText || postText === "") {
     return res.status(400).json({

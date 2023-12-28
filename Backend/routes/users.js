@@ -18,9 +18,12 @@ const myFollowers = require("../controllers/myFollowers");
 const following = require("../controllers/following");
 const MockFetch = require("../controllers/MockFetch");
 const GetUser = require("../controllers/GetUser");
+const upload = require("../middleware/multer");
 router.use(express.json());
 
 router.post("/register", userRegister);
+
+// test api route for the uploading the image file
 
 router.post("/login", userLogin);
 

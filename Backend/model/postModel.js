@@ -18,7 +18,7 @@ const postSchema = new mongoose.Schema({
   },
   likes: [
     {
-      user_id: mongoose.Schema.Types.ObjectId,
+      // user_id: mongoose.Schema.Types.ObjectId,
       post_id: mongoose.Schema.Types.ObjectId,
     },
   ],

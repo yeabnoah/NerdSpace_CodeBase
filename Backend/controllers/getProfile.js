@@ -11,6 +11,7 @@ const getProfile = (req, res) => {
       }
 
       const profileData = {
+        userId: req.user._id,
         name: userData.name,
         username: userData.username,
         phoneNumber: userData.phone_number,
