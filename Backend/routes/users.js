@@ -4,7 +4,7 @@ const User = require("../model/userModel");
 const userRegister = require("../controllers/userRegister");
 const userLogin = require("../controllers/userLogin");
 const authenticator = require("../middleware/authenticator");
-const createPost = require("../controllers/createPost");
+// const createPost = require("../controllers/createPost");
 const getProfile = require("../controllers/getProfile");
 const Feed = require("../controllers/feed");
 const updateProfile = require("../controllers/updateProfile");
@@ -18,8 +18,26 @@ const myFollowers = require("../controllers/myFollowers");
 const following = require("../controllers/following");
 const MockFetch = require("../controllers/MockFetch");
 const GetUser = require("../controllers/GetUser");
-const upload = require("../middleware/multer");
+const all = require("../controllers/createPost");
+const multer = require("multer");
+const path = require("path");
+const postController = require("../controllers/post");
+
 router.use(express.json());
+
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({
+  storage: storage,
+}).single("image");
 
 router.post("/register", userRegister);
 
@@ -31,7 +49,7 @@ router.get("/auth/feed", authenticator, Feed);
 
 router.get("/auth/user/:id", authenticator, GetUser);
 
-router.post("/auth/create", authenticator, createPost);
+router.post("/auth/create", authenticator, upload, postController.createPost);
 
 router.post("/auth/post/comment/:id", authenticator, comment);
 

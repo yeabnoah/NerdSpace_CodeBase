@@ -1,46 +1,50 @@
 const Post = require("../model/postModel");
 const path = require("path");
-const formidable = require("formidable");
-const fs = require("fs");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 
 const createPost = async (req, res) => {
-  let ImageUrl;
-  let postText;
-
-  const form = new formidable.IncomingForm();
-  form.uploadDir = path.join(__dirname, "../uploads");
-
-  const [fields, files] = await form.parse(req);
-
-  const imageFile = files.imageFile;
-  if (imageFile) {
-    const myFile = imageFile[0];
-    ImageUrl = myFile.filepath;
-    postText = fields.content[0];
+  if (!req.file) {
+    return res.status(400).send("No file uploaded");
   }
 
-  if (!postText || postText === "") {
-    return res.status(400).json({
-      message: "Post content is required.",
-    });
-  }
+  const filePath = req.file.path;
+  const content = req.body.text;
+  console.log("File uploaded to:", filePath);
+
+  // res.json({
+  //   message: "File uploaded successfully",
+  //   path: filePath,
+  //   name: req.file.filename,
+  // });
 
   const newPost = new Post({
     user_id: req.user._id,
-    content: postText,
-    imageUrl: ImageUrl,
+    content: content,
+    imageUrl: filePath,
   });
 
   newPost
     .save()
     .then(() => {
+      console.log("working");
       res.json({
         message: "Posted successfully",
-        Image: ImageUrl,
-        text: postText,
+        Image: filePath,
+        text: content,
       });
     })
     .catch((error) => {
+      console.error(error);
       res.status(500).json({
         message: "Error occurred while saving the post.",
         error: error.message,
@@ -48,4 +52,9 @@ const createPost = async (req, res) => {
     });
 };
 
-module.exports = createPost;
+const all = {
+  createPost,
+  upload,
+};
+
+module.exports = all;
