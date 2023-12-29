@@ -22,14 +22,16 @@ const all = require("../controllers/createPost");
 const multer = require("multer");
 const path = require("path");
 const postController = require("../controllers/post");
+// const imagePath = require("../uploads/data");
 
 router.use(express.json());
 
 const storage = multer.diskStorage({
-  destination: "./uploads/",
+  destination: "uploads/",
   filename: function (req, file, cb) {
     cb(
       null,
+
       file.fieldname + "-" + Date.now() + path.extname(file.originalname)
     );
   },
@@ -42,6 +44,8 @@ const upload = multer({
 router.post("/register", userRegister);
 
 // test api route for the uploading the image file
+
+router.use("/uploads", express.static("uploads"));
 
 router.post("/login", userLogin);
 
