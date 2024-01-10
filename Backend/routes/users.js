@@ -22,6 +22,7 @@ const all = require("../controllers/createPost");
 const multer = require("multer");
 const path = require("path");
 const postController = require("../controllers/post");
+const GetAllMyPosts = require("../controllers/GetAllMyPosts");
 // const imagePath = require("../uploads/data");
 
 router.use(express.json());
@@ -56,6 +57,8 @@ router.get("/auth/user/:id", authenticator, GetUser);
 router.post("/auth/create", authenticator, upload, postController.createPost);
 
 router.post("/auth/post/comment/:id", authenticator, comment);
+
+router.get("/auth/post/comment/:id", authenticator, GetAllMyPosts);
 
 router.post("/auth/post/like/:id", authenticator, like);
 
