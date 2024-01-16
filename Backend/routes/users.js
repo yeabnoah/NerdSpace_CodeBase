@@ -23,6 +23,7 @@ const multer = require("multer");
 const path = require("path");
 const postController = require("../controllers/post");
 const GetAllMyPosts = require("../controllers/GetAllMyPosts");
+const updateCover = require("../controllers/updateCover");
 // const imagePath = require("../uploads/data");
 
 router.use(express.json());
@@ -42,6 +43,37 @@ const upload = multer({
   storage: storage,
 }).single("image");
 
+// const multipleFilesUpload = (fields) => {
+//   return upload.fields(fields);
+// };
+
+// const singleFileUpload = (fieldName) => {
+//   return upload.single(fieldName);
+// };
+
+// const mid = () => {
+//   if (avatar_image && coverImage) {
+//     multipleFilesUpload([
+//       { avatar_image: "avatar_image" },
+//       { coverImage: "coverImage" },
+//     ]);
+//   } else if (avatar_image) {
+//     singleFileUpload("avatar_image");
+//   } else if (coverImage) {
+//     singleFileUpload("coverImage");
+//   }
+// };
+
+// this handles only single file
+
+const upload2 = multer({
+  storage: storage,
+}).single("coverImage");
+
+const upload4 = multer({
+  storage: storage,
+}).single("avatar_image");
+
 router.post("/register", userRegister);
 
 // test api route for the uploading the image file
@@ -58,7 +90,7 @@ router.post("/auth/create", authenticator, upload, postController.createPost);
 
 router.post("/auth/post/comment/:id", authenticator, comment);
 
-router.get("/auth/post/comment/:id", authenticator, GetAllMyPosts);
+router.get("/auth/post/:id", authenticator, GetAllMyPosts);
 
 router.post("/auth/post/like/:id", authenticator, like);
 
@@ -70,9 +102,11 @@ router.post("/auth/post/save/:id", authenticator, savePost);
 
 router.get("/auth/post/comment/:id", authenticator, getComment);
 
-router.post("/auth/profile", authenticator, updateProfile);
+router.post("/auth/profile/", authenticator, upload4, updateProfile);
 
-router.post("/auth/follow", authenticator, follow);
+router.post("/auth/profile/cover", authenticator, upload2, updateCover);
+
+router.post("/auth/follow/:id", authenticator, follow);
 
 router.get("/auth/followers", authenticator, myFollowers);
 

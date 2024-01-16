@@ -18,6 +18,8 @@ const userRegister = (req, res) => {
               phone_number: phoneNo,
               username: username,
               password: hashedPassword,
+              coverImage: `uploads\\assets\\cover-placeholder.jpg`,
+              avatar_image: `uploads\\assets\\avatar.png`,
             });
             newUser.save().then(() => {
               const token = generateToken(newUser._id);

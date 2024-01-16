@@ -20,6 +20,8 @@ const getProfile = (req, res) => {
         joinedOn: userData.created_at,
         followers: userData.followers.length,
         following: userData.following.length,
+        coverImage: userData.coverImage,
+        email: userData.email,
       };
 
       res.json(profileData);
