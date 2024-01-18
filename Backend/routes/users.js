@@ -17,14 +17,13 @@ const getLike = require("../controllers/getLike");
 const myFollowers = require("../controllers/myFollowers");
 const following = require("../controllers/following");
 const MockFetch = require("../controllers/MockFetch");
-const GetUser = require("../controllers/GetUser");
 const all = require("../controllers/createPost");
 const multer = require("multer");
 const path = require("path");
 const postController = require("../controllers/post");
 const GetAllMyPosts = require("../controllers/GetAllMyPosts");
 const updateCover = require("../controllers/updateCover");
-// const imagePath = require("../uploads/data");
+const getUsers = require("../controllers/getUsers");
 
 router.use(express.json());
 
@@ -84,7 +83,9 @@ router.post("/login", userLogin);
 
 router.get("/auth/feed", authenticator, Feed);
 
-router.get("/auth/user/:id", authenticator, GetUser);
+router.get("/auth/profile/user/:id", authenticator, getUsers);
+
+router.get("/auth/profile/", authenticator, getProfile);
 
 router.post("/auth/create", authenticator, upload, postController.createPost);
 
@@ -96,7 +97,7 @@ router.post("/auth/post/like/:id", authenticator, like);
 
 router.get("/auth/post/like/:id", authenticator, getLike);
 
-router.get("/auth/profile", authenticator, getProfile);
+
 
 router.post("/auth/post/save/:id", authenticator, savePost);
 
