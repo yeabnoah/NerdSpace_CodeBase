@@ -21,6 +21,7 @@ const getUsers = (req, res) => {
         following: userData.following.length,
         coverImage: userData.coverImage,
         email: userData.email,
+        nerd: userData.nerd,
       };
 
       res.json({ message: "user Found", data: profileData });

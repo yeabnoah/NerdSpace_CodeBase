@@ -22,6 +22,7 @@ const getProfile = (req, res) => {
         following: userData.following.length,
         coverImage: userData.coverImage,
         email: userData.email,
+        nerd: userData.nerd,
       };
 
       res.json(profileData);
