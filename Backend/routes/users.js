@@ -24,6 +24,8 @@ const postController = require("../controllers/post");
 const GetAllMyPosts = require("../controllers/GetAllMyPosts");
 const updateCover = require("../controllers/updateCover");
 const getUsers = require("../controllers/getUsers");
+const findByUserName = require("../controllers/findByUserName");
+const findByName = require("../controllers/findByName");
 
 router.use(express.json());
 
@@ -97,8 +99,6 @@ router.post("/auth/post/like/:id", authenticator, like);
 
 router.get("/auth/post/like/:id", authenticator, getLike);
 
-
-
 router.post("/auth/post/save/:id", authenticator, savePost);
 
 router.get("/auth/post/comment/:id", authenticator, getComment);
@@ -112,4 +112,11 @@ router.post("/auth/follow/:id", authenticator, follow);
 router.get("/auth/followers", authenticator, myFollowers);
 
 router.get("/auth/following", authenticator, following);
+
+// this is gonna be an api to find the user by its username and name
+
+router.post("/auth/user/findByUserName", authenticator, findByUserName);
+
+router.post("/auth/user/findByName", authenticator, findByName);
+
 module.exports = router;

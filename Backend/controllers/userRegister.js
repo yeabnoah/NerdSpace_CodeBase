@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const generateToken = require("../middleware/generateToken");
 
 const userRegister = (req, res) => {
-  const { name, username, password, phoneNo } = req.body;
+  const { name, username, password, phoneNo, nerd } = req.body;
 
   bcrypt
     .hash(password, 10)
@@ -18,6 +18,7 @@ const userRegister = (req, res) => {
               phone_number: phoneNo,
               username: username,
               password: hashedPassword,
+              nerd: nerd,
               coverImage: `uploads\\assets\\cover-placeholder.jpg`,
               avatar_image: `uploads\\assets\\avatar.png`,
             });
