@@ -85,6 +85,8 @@ router.post("/login", userLogin);
 
 router.get("/auth/feed", authenticator, Feed);
 
+router.get("/feed", Feed); // ************** test case ****************** //
+
 router.get("/auth/profile/user/:id", authenticator, getUsers);
 
 router.get("/auth/profile/", authenticator, getProfile);
