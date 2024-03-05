@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const PORT = 5000;
-const mongoPort = "mongodb://127.0.0.1:27017/NerdSpace";
+const mongoPort = `${process.env.MONGO_URL}`;
 const app = express();
 const userRouter = require("./routes/users");
 // const postRouter = require("./routes/Posts");
