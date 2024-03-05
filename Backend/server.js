@@ -13,8 +13,8 @@ app.use(cors());
 // app.use("/posts", postRouter);
 
 mongoose.connect(mongoPort).then(() => {
-  app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
+  app.listen(process.env.PORT, () => {
+    console.log(`server is running on port ${process.env.PORT}`);
     console.log(`Database connected successfully`);
   });
 });
