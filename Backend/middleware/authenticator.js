@@ -13,7 +13,6 @@ const authenticator = (req, res, next) => {
     if (err) {
       return res.status(401).json({ mssg: "invalid token" });
     }
-897
     const userId = verified.userId;
 
     User.findById(userId)
