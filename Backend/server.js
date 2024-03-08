@@ -1,6 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const PORT = 5000;
+<<<<<<< HEAD
+=======
+// const mongoPort = `${process.env.MONGO_URL}`;
+>>>>>>> cf067979da976c096c7256df0f3a8248794b390b
 const app = express();
 const userRouter = require("./routes/users");
 // const postRouter = require("./routes/Posts");
