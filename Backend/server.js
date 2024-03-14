@@ -10,7 +10,7 @@ app.use("/users", userRouter);
 app.use(cors());
 // app.use("/posts", postRouter);
 
-mongoose.connect(process.env.MONGO_URL, { dbName: "Nerdspace" }).then(() => {
+mongoose.connect(process.env.MONGO_URL).then(() => {
   app.listen(process.env.PORT, () => {
     console.log(`server is running on port ${process.env.PORT}`);
     console.log(`Database connected successfully`);
