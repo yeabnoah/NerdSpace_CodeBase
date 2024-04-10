@@ -4,7 +4,7 @@ const User = require("../model/userModel");
 const userRegister = require("../controllers/userRegister");
 const userLogin = require("../controllers/userLogin");
 const authenticator = require("../middleware/authenticator");
-// const createPost = require("../controllers/createPost");
+const createPoster = require("../controllers/dry");
 const getProfile = require("../controllers/getProfile");
 const Feed = require("../controllers/feed");
 const updateProfile = require("../controllers/updateProfile");
@@ -91,7 +91,9 @@ router.get("/auth/profile/user/:id", authenticator, getUsers);
 
 router.get("/auth/profile/", authenticator, getProfile);
 
-router.post("/auth/create", authenticator, upload, postController.createPost);
+// router.post("/auth/create", authenticator, upload, postController.createPost);
+
+router.post("/auth/create", authenticator, createPoster);
 
 router.post("/auth/post/comment/:id", authenticator, comment);
 
